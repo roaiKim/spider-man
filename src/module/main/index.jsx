@@ -17,7 +17,7 @@ class MainModule extends Module {
 
     @Lifecycle()
     onRegister() {
-        this.fetchLoginUser();
+        // this.fetchLoginUser();
     }
 
     @Lifecycle()

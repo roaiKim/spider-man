@@ -58,6 +58,11 @@ const menuMap = {
         title: "GAME4",
         icon: <FileTextOutlined className="ro-menu-icon" />,
     },
+    "show-customer-components": {
+        order: 8,
+        title: "",
+        icon: <FileTextOutlined className="ro-menu-icon" />,
+    },
 };
 
 // 初步 检查菜单是否合法

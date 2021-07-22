@@ -53,13 +53,13 @@ class Main extends React.PureComponent {
         const { content } = this.state;
         const { isCheckLoading } = this.props;
         // isCheckLoading 为 true, 说明 check 接口未返回或者失败
-        if (isCheckLoading) {
-            return (
-                <Loading>
-                    <Button type="link" onClick={this.refresh}>{content}</Button>
-                </Loading>
-            );
-        }
+        // if (isCheckLoading) {
+        //     return (
+        //         <Loading>
+        //             <Button type="link" onClick={this.refresh}>{content}</Button>
+        //         </Loading>
+        //     );
+        // }
         return (
             <Switch>
                 <Route path="/login" component={Login.Component} />
