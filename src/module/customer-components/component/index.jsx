@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import "./index.less";
+import Parent from "./Parent";
+import Child from "./Child";
 
 class Main extends React.PureComponent {
 
@@ -16,6 +18,9 @@ class Main extends React.PureComponent {
             <article className="ro-module-wrap ro-components-module">
                 <div className="ro-table-wrap">
                     ff
+                    <Parent>
+                        <Child> ss </Child>
+                    </Parent>
                 </div>
             </article>
         );
