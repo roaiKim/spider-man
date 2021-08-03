@@ -69,6 +69,12 @@ class Header extends React.PureComponent {
         </Menu>
     )
 
+    getTab = (id) => (
+        <div className={id === 2 ? "active" : ""}>
+            {id}
+        </div>
+    )
+
     render() {
         const { isFullScreen } = this.state;
         return (
@@ -77,8 +83,13 @@ class Header extends React.PureComponent {
                     <MenuFoldOutlined onClick={this.toggleCollapseMenu} />
                     {!isFullScreen ? <ExpandOutlined onClick={this.toggleFullScreen} /> : <FullscreenExitOutlined onClick={this.toggleFullScreen} />}
                 </div>
+                <div className="ro-header-tab ro-flex">
+                    {
+                        [1, 2, 3, 4].map((item) => this.getTab(item))
+                    }
+                </div>
                 <div className="ro-icon ro-right-aside ro-flex ro-align-items">
-                    <Input placeholder="Select" />
+                    {/* <Input placeholder="Select" /> */}
                     <Badge size="small" count={5} overflowCount={99} offset={[-10, 10]}>
                         <BellOutlined />
                     </Badge>
