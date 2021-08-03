@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    MenuFoldOutlined, ExpandOutlined, SettingOutlined, BellOutlined,
+    MenuFoldOutlined, ExpandOutlined, SettingOutlined, BellOutlined, FullscreenExitOutlined,
 } from "@icon";
 import {
     Input, Badge, Dropdown, Menu,
@@ -14,7 +14,7 @@ class Header extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-
+            isFullScreen: false,
         };
         this.logOut = this.logOut.bind(this);
     }
@@ -22,6 +22,34 @@ class Header extends React.PureComponent {
     toggleCollapseMenu = () => {
         const { dispatch } = this.props;
         dispatch(actions.toggleCollapseMenu());
+    }
+
+    toggleFullScreen = () => {
+        const { isFullScreen } = this.state;
+        if (!isFullScreen) {
+            const element = document.documentElement;
+            if (element.requestFullscreen) {
+                element.requestFullscreen();
+            } else if (element.msRequestFullscreen) {
+                element.msRequestFullscreen();
+            } else if (element.mozRequestFullScreen) {
+                element.mozRequestFullScreen();
+            } else if (element.webkitRequestFullscreen) {
+                element.webkitRequestFullscreen();
+            }
+        } else {
+            // eslint-disable-next-line no-lonely-if
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            }
+        }
+        this.setState({ isFullScreen: !isFullScreen });
     }
 
     @WithConfirm("确认要退出吗?")
@@ -42,11 +70,12 @@ class Header extends React.PureComponent {
     )
 
     render() {
+        const { isFullScreen } = this.state;
         return (
             <header className="ro-main-header">
                 <div className="ro-icon ro-left-aside">
                     <MenuFoldOutlined onClick={this.toggleCollapseMenu} />
-                    <ExpandOutlined />
+                    {!isFullScreen ? <ExpandOutlined onClick={this.toggleFullScreen} /> : <FullscreenExitOutlined onClick={this.toggleFullScreen} />}
                 </div>
                 <div className="ro-icon ro-right-aside ro-flex ro-align-items">
                     <Input placeholder="Select" />
