@@ -1,5 +1,5 @@
 import { Lifecycle, Module, register } from "core";
-import { WEB_TOKEN, COLLAPSED_MENU } from "@tools";
+import { WEB_TOKEN, COLLAPSED_MENU } from "@tools/enum";
 import Main from "./component";
 
 const initialState = {

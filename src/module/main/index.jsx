@@ -2,7 +2,7 @@ import {
     Lifecycle, Loading, Module, register, loadingAction, showLoading,
 } from "core";
 import { MainService } from "@api/MainService";
-import { WEB_TOKEN } from "@tools";
+import { WEB_TOKEN } from "@tools/enum";
 import { message } from "antd";
 import Main from "./component";
 
