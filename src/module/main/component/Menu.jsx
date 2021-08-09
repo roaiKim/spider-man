@@ -53,7 +53,7 @@ class MemuComponent extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    collapsed: state.app.main.collapsed,
+    collapsed: state.app.navigation.collapsed,
 });
 
 export default connect(mapStateToProps)(MemuComponent);

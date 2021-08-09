@@ -1,2 +1,2 @@
 export { WithConfirm } from "./decorator";
-export { WEB_TOKEN } from "./ENUM";
+export { WEB_TOKEN, COLLAPSED_MENU } from "./ENUM";

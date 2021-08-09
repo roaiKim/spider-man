@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { showLoading, Route } from "core";
 import { Switch } from "react-router-dom";
 import { cacheRoute } from "service/MenuLoader";
+import Header from "module/navigation";
 import Menu from "./Menu";
-import Header from "./Header";
 import Nofound from "./404Nofound";
 
 class Main extends React.PureComponent {

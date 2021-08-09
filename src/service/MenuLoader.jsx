@@ -48,7 +48,7 @@ const menuMap = {
         order: 5,
         title: "GAME4",
     },
-    usesr1: {
+    navigation: {
         order: 6,
         title: "GAME4",
         icon: <InstagramOutlined className="ro-menu-icon" />,

@@ -8,10 +8,11 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPl
 
 module.exports = {
     devServer: {
-        port: 8000,
+        port: 10086,
         hot: true,
         historyApiFallback: true,
         compress: true,
+        open: 'Chrome',
         proxy: {
             "/api": {
                 target: "http://119.29.53.45",
