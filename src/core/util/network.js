@@ -1,6 +1,6 @@
 import axios, { CancelToken } from "axios";
 import { message } from "antd";
-import { WEB_TOKEN } from "@tools/enum";
+import { WEB_TOKEN } from "@tools/enumType";
 import { completePath } from "./config";
 
 const httpRequestMap = new Map();
