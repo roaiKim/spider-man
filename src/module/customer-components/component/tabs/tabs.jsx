@@ -1,4 +1,5 @@
 import React from "react";
+import { CloseOutlined } from "@icon";
 import SVG from "./tab-svg";
 import "./index.less";
 
@@ -25,7 +26,9 @@ function ChromeTab({ tabs, active }) {
                 <div className="ro-tab-item-favicon chrome-google" />
                 <div className="ro-tab-item-title">Google</div>
                 <div className="ro-tab-item-drag-handle" />
-                <div className="ro-tab-item-close" />
+                <div className="ro-tab-item-close">
+                    {/* <CloseOutlined style={{ color: "#000" }} /> */}
+                </div>
             </div>
         </div>
     ));

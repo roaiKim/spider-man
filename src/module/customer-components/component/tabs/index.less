@@ -1,6 +1,9 @@
 .ro-header-tabs-container {
-    background-color: #fff;
+    background-color: #dee1e6;
     border-bottom: 2px solid #dee1e6;
+    padding: 8px 3px 2px 3px;
+    position: relative;
+    border-radius: 5px 5px 0 0;
     .ro-tabs-container {
         display: flex;
         background-color: #dee1e6;
@@ -36,6 +39,23 @@
             .ro-tab-item-title {
                 margin-left: 8px;
                 flex-grow: 1;
+                color: #000;
+            }
+
+            .ro-tab-item-close {
+                margin-right: 16px;
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                border-radius: 50%;
+                background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'><path stroke='rgba(0, 0, 0, .65)' stroke-linecap='square' stroke-width='1.5' d='M0 0 L8 8 M8 0 L0 8'></path></svg>");
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: 8px 8px;
+                cursor: pointer;
+                &:hover {
+                    background-color: #e8eaed;
+                }
             }
 
             @media (hover: hover) {
@@ -46,6 +66,26 @@
                     opacity: 1;
                 }
             }
+
+            &:hover {
+                color: red;
+                .ro-tab-item-background {
+                    > svg {
+                        fill: #f4f5f6;
+                        opacity: 1;
+                    }
+                }
+            }
         }
+    }
+
+    .ro-tabs-container-bottom-bar {
+        position: absolute;
+        bottom: 0;
+        height: 4px;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        z-index: 10;
     }
 }
