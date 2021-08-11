@@ -3,13 +3,11 @@ import SVG from "./tab-svg";
 
 export default function TabComponent() {
     return (
-        <div className="surface">
-            <div className="chrome-tabs">
-                <div className="chrome-tabs-content">
-                    <ChromeTab tabs={[1, 2, 3]} active={2} />
-                </div>
-                <div className="chrome-tabs-bottom-bar" />
+        <div className="ro-header-tabs-container">
+            <div className="ro-tabs-container">
+                <ChromeTab tabs={[1, 2, 3]} active={2} />
             </div>
+            <div className="ro-tabs-container-bottom-bar" />
         </div>
     );
 }

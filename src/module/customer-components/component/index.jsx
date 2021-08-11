@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import "./index.less";
 import Parent from "./Parent";
 import Child from "./Child";
+import TabComponent from "./tabs/tabs";
 
 class Main extends React.PureComponent {
 
@@ -21,6 +22,9 @@ class Main extends React.PureComponent {
                     <Parent>
                         <Child> ss </Child>
                     </Parent>
+                </div>
+                <div>
+                    <TabComponent />
                 </div>
             </article>
         );
