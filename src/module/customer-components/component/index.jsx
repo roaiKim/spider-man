@@ -24,7 +24,7 @@ class Main extends React.PureComponent {
                     </Parent>
                 </div>
                 <div>
-                    <TabComponent />
+                    {/* <TabComponent /> */}
                 </div>
             </article>
         );
