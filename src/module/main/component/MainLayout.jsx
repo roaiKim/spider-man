@@ -23,7 +23,7 @@ class Main extends React.PureComponent {
         return (
             <article className="ro-main-wrap">
                 <Menu />
-                <section className="ro-main" style={{ height: website.height || bodyHeight }}>
+                <section className="ro-main">
                     <Header />
                     <main className="ro-body-container">
                         <Switch>
