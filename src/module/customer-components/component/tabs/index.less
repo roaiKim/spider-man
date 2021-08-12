@@ -1,4 +1,5 @@
 .ro-header-tabs-container {
+    user-select: none;
     background-color: #dee1e6;
     border-bottom: 2px solid #dee1e6;
     padding: 8px 3px 2px 3px;
@@ -9,19 +10,68 @@
         background-color: #dee1e6;
         .ro-tab-item {
             max-width: 258px;
+            min-width: 120px;
             position: relative;
+            ~ .ro-tab-item {
+                margin-left: -19px;
+            }
+            &:first-child {
+                .ro-tab-item-dividers {
+                    &::before {
+                        opacity: 0;
+                    }
+                }
+            }
+            & + .ro-tab-item {
+                .ro-tab-item-dividers {
+                    &::before {
+                        opacity: 0;
+                        transition: opacity 0.2s ease;
+                    }
+                }
+            }
+            .ro-tab-item-dividers {
+                position: absolute;
+                user-select: none;
+                position: absolute;
+                top: 7px;
+                bottom: 7px;
+                left: 9px;
+                right: 9px;
+                &::after,
+                &::before {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    width: 1px;
+                    background: #a9adb0;
+                    opacity: 1;
+                    transition: opacity 0.2s ease;
+                }
+                &::after {
+                    right: 0px;
+                }
+            }
             .ro-tab-item-background {
                 line-height: 0;
                 > svg {
                     width: 100%;
                     height: 36px;
                     opacity: 0;
+                } 
+            }
+            &[active] {
+                z-index: 10;
+                .ro-tab-item-background > svg {
+                    opacity: 1;
+                    fill: #fff;
                 }
-
-                &[active] {
-                    > svg {
-                        opacity: 1;
-                        fill: #fff;
+                .ro-tab-item-dividers {
+                    &::after,
+                    &::before {
+                        opacity: 0;
                     }
                 }
             }
@@ -58,21 +108,17 @@
                 }
             }
 
-            @media (hover: hover) {
-                .ro-tabs-container .chrome-tab:not([active]):hover {
-                    z-index: 2;
-                }
-                .ro-tabs-container .chrome-tab:not([active]):hover .chrome-tab-background {
-                    opacity: 1;
-                }
-            }
-
-            &:hover {
-                color: red;
+            &:not([active]):hover {
                 .ro-tab-item-background {
                     > svg {
                         fill: #f4f5f6;
                         opacity: 1;
+                    }
+                }
+                .ro-tab-item-dividers {
+                    &::after,
+                    &::before {
+                        opacity: 0;
                     }
                 }
             }
