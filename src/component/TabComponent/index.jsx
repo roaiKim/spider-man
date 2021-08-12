@@ -2,7 +2,7 @@ import React from "react";
 import ChromeTab from "./ChromeTab";
 import "./index.less";
 
-export default function TabComponent() {
+function TabComponent() {
     return (
         <div className="ro-header-tabs-container">
             <div className="ro-scroll-tabs-container">
@@ -14,3 +14,5 @@ export default function TabComponent() {
         </div>
     );
 }
+
+export { TabComponent };

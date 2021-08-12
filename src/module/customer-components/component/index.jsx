@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import TabComponent from "@component/HeaderTabs";
+import { TabComponent } from "@component";
 import "./index.less";
 import Parent from "./Parent";
 import Child from "./Child";

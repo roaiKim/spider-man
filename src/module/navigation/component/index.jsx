@@ -10,7 +10,7 @@ import { Badge, Dropdown, Menu } from "antd";
 import { actions } from "module/navigation";
 import { WithConfirm } from "@tools";
 import { connect } from "react-redux";
-import TabComponent from "@component/HeaderTabs";
+import { TabComponent } from "@component";
 import "./index.less";
 
 class Header extends React.PureComponent {
@@ -78,9 +78,6 @@ class Header extends React.PureComponent {
       const { isFullScreen } = this.state;
       return (
           <header className="ro-navigation-header ro-icon">
-              {/* <div className="ro-icon ro-left-aside">
-
-              </div> */}
               <MenuFoldOutlined onClick={this.toggleCollapseMenu} />
               {!isFullScreen ? (
                   <ExpandOutlined onClick={this.toggleFullScreen} />
@@ -88,10 +85,6 @@ class Header extends React.PureComponent {
                   <FullscreenExitOutlined onClick={this.toggleFullScreen} />
               )}
               <TabComponent />
-              {/* <div className="ro-icon ro-right-aside ro-flex ro-align-items">
-
-              </div> */}
-              {/* <Input placeholder="Select" /> */}
               <Badge size="small" count={5} overflowCount={99} offset={[-10, 10]}>
                   <BellOutlined />
               </Badge>
