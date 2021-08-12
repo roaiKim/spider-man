@@ -19,6 +19,8 @@ class Header extends React.PureComponent {
         super(props);
         this.state = {
             isFullScreen: false,
+            activeTab: 2,
+            tabs: [1, 2, 3, 4, 5],
         };
         this.logOut = this.logOut.bind(this);
     }
@@ -55,18 +57,34 @@ class Header extends React.PureComponent {
       dispatch(actions.logOut());
   }
 
+  onCloseTab = (event, key) => {
+      event.stopPropagation();
+      if (key) {
+          const { tabs } = this.state;
+          this.setState({
+              tabs: tabs.filter((item) => item !== key),
+          });
+      }
+  }
+
+  onActiveTab = (key) => {
+      if (key) {
+          this.setState({ activeTab: key });
+      }
+  }
+
   menu = () => (
       <Menu>
-          <Menu.Item>
+          <Menu.Item key="1">
               <a
-                  target="_blank"
+                  //   target="_blank"
                   rel="noopener noreferrer"
-                  href="https://www.antgroup.com"
+                  href="#"
               >
                   个人信息
               </a>
           </Menu.Item>
-          <Menu.Item danger onClick={this.logOut}>
+          <Menu.Item key="2" danger onClick={this.logOut}>
               退出
           </Menu.Item>
       </Menu>
@@ -75,16 +93,21 @@ class Header extends React.PureComponent {
   getTab = (id) => <div className={id === 2 ? "active" : ""}>{id}</div>;
 
   render() {
-      const { isFullScreen } = this.state;
+      const { isFullScreen, tabs, activeTab } = this.state;
+
       return (
           <header className="ro-navigation-header ro-icon">
+              <section>
+                  <img src={require("asset/images/global/logo.jpeg")} alt="" />
+                  <h3>Website</h3>
+              </section>
               <MenuFoldOutlined onClick={this.toggleCollapseMenu} />
               {!isFullScreen ? (
                   <ExpandOutlined onClick={this.toggleFullScreen} />
               ) : (
                   <FullscreenExitOutlined onClick={this.toggleFullScreen} />
               )}
-              <TabComponent />
+              <TabComponent tabs={tabs} activeTab={activeTab} onClose={this.onCloseTab} onActive={this.onActiveTab} />
               <Badge size="small" count={5} overflowCount={99} offset={[-10, 10]}>
                   <BellOutlined />
               </Badge>
@@ -101,4 +124,8 @@ class Header extends React.PureComponent {
 
 }
 
-export default connect()(Header);
+const mapStateToProps = (state) => ({
+    collapsed: state.app.navigation.collapsed,
+});
+
+export default connect(mapStateToProps)(Header);

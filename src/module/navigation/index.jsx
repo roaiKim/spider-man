@@ -10,7 +10,7 @@ class NavigationModule extends Module {
 
   @Lifecycle()
     onRender() {
-        console.log("user module action");
+        console.log("navigation module action");
     }
 
   logOut() {

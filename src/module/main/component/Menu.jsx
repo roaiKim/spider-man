@@ -31,12 +31,6 @@ class MemuComponent extends React.PureComponent {
 
         return (
             <nav className="ro-nav">
-                <section>
-                    <img src={require("asset/images/global/logo.jpeg")} alt="" />
-                    {
-                        !collapsed && <h3>Website</h3>
-                    }
-                </section>
                 <Menu
                     onClick={this.handleClick}
                     inlineCollapsed={collapsed}

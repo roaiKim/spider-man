@@ -22,9 +22,9 @@ class Main extends React.PureComponent {
 
         return (
             <article className="ro-main-wrap">
-                <Menu />
+                <Header />
                 <section className="ro-main">
-                    <Header />
+                    <Menu />
                     <main className="ro-body-container">
                         <Switch>
                             {cacheRoute.map(({ path, Component }) => (
