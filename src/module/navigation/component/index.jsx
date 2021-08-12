@@ -77,29 +77,31 @@ class Header extends React.PureComponent {
   render() {
       const { isFullScreen } = this.state;
       return (
-          <header className="ro-navigation-header">
-              <div className="ro-icon ro-left-aside">
-                  <MenuFoldOutlined onClick={this.toggleCollapseMenu} />
-                  {!isFullScreen ? (
-                      <ExpandOutlined onClick={this.toggleFullScreen} />
-                  ) : (
-                      <FullscreenExitOutlined onClick={this.toggleFullScreen} />
-                  )}
-              </div>
+          <header className="ro-navigation-header ro-icon">
+              {/* <div className="ro-icon ro-left-aside">
+
+              </div> */}
+              <MenuFoldOutlined onClick={this.toggleCollapseMenu} />
+              {!isFullScreen ? (
+                  <ExpandOutlined onClick={this.toggleFullScreen} />
+              ) : (
+                  <FullscreenExitOutlined onClick={this.toggleFullScreen} />
+              )}
               <TabComponent />
-              <div className="ro-icon ro-right-aside ro-flex ro-align-items">
-                  {/* <Input placeholder="Select" /> */}
-                  <Badge size="small" count={5} overflowCount={99} offset={[-10, 10]}>
-                      <BellOutlined />
-                  </Badge>
-                  <a href="#" className="ro-profile">
-                      <span>rosen</span>
-                      <img alt="" src={require("asset/images/global/header.jpg")} />
-                  </a>
-                  <Dropdown overlay={this.menu()} trigger="click">
-                      <SettingOutlined />
-                  </Dropdown>
-              </div>
+              {/* <div className="ro-icon ro-right-aside ro-flex ro-align-items">
+
+              </div> */}
+              {/* <Input placeholder="Select" /> */}
+              <Badge size="small" count={5} overflowCount={99} offset={[-10, 10]}>
+                  <BellOutlined />
+              </Badge>
+              <a href="#" className="ro-profile">
+                  <span>rosen</span>
+                  <img alt="" src={require("asset/images/global/header.jpg")} />
+              </a>
+              <Dropdown overlay={this.menu()} trigger="click">
+                  <SettingOutlined />
+              </Dropdown>
           </header>
       );
   }
