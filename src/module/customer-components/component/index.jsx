@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
+import TabComponent from "@component/HeaderTabs";
 import "./index.less";
 import Parent from "./Parent";
 import Child from "./Child";
-import TabComponent from "./tabs/tabs";
 
 class Main extends React.PureComponent {
 
