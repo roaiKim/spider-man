@@ -118,6 +118,7 @@ class Header extends React.PureComponent {
               <Dropdown overlay={this.menu()} trigger="click">
                   <SettingOutlined />
               </Dropdown>
+              <div className="ro-tabs-container-bottom-bar" />
           </header>
       );
   }
