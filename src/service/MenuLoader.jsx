@@ -63,6 +63,11 @@ const menuMap = {
         title: "",
         icon: <FileTextOutlined className="ro-menu-icon" />,
     },
+    type: {
+        order: 9,
+        title: "类型",
+        icon: <FileTextOutlined className="ro-menu-icon" />,
+    },
 };
 
 // 初步 检查菜单是否合法

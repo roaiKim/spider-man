@@ -31,7 +31,6 @@ function TabComponent(props) {
                     }
                 </div>
             </div>
-            <div className="ro-tabs-container-bottom-bar" />
         </div>
     );
 }
