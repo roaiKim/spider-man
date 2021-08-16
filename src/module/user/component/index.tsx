@@ -1,13 +1,10 @@
 import React from "react";
 import "./index.less";
-
+import Test from "./typescript";
 class Main extends React.PureComponent {
-
     constructor(props) {
         super(props);
-        this.state = {
-
-        };
+        this.state = {};
     }
 
     render() {
@@ -20,10 +17,10 @@ class Main extends React.PureComponent {
                     <b />
                     <b />
                 </div>
+                <Test />
             </article>
         );
     }
-
 }
 
 export default Main;

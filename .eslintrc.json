@@ -1,24 +1,28 @@
 {
-    "parser": "babel-eslint",
+    "parser": "@typescript-eslint/parser",
     "env": {
         "node": true,
         "es6": true,
         "browser": true
     },
     "extends": [
-        "airbnb",
         "eslint:recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:prettier/recommended",
+        "@typescript-eslint/eslint-plugin"
     ],
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
         },
         "ecmaVersion": 11,
-        "sourceType": "module"
+        "sourceType": "module",
+        "project": "./tsconfig.json"
     },
     "plugins": [
-        "react"
+        "react",
+        "prettier",
+        "@typescript-eslint"
     ],
     "settings": {
         "import/resolver": {
