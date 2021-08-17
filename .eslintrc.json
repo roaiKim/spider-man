@@ -6,8 +6,11 @@
         "browser": true
     },
     "extends": [
-        "plugin:prettier/recommended",
-        "plugin:react/recommended"
+        "airbnb",
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:prettier/recommended"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -26,7 +29,13 @@
             "webpack": {
                 "config": "./webpack/webpack.config.development.js"
             }
-        }
+        },
+        "import/extensions": [
+            ".js",
+            ".jsx",
+            ".ts",
+            ".tsx"
+        ]
     },
     "ignorePatterns": [
         "**/*.less",
@@ -86,7 +95,7 @@
         "no-var": "error",
         "require-await": "error",
         "computed-property-spacing": "error",
-        "lines-between-class-members": "error",
+        "lines-between-class-members": "off",
         "key-spacing": "error",
         "no-nested-ternary": "error",
         "no-multiple-empty-lines": [
@@ -113,12 +122,6 @@
         "import/no-cycle": "off",
         "global-require": "off",
         "jsx-a11y/anchor-is-valid": "off",
-        "padded-blocks": [
-            "error",
-            {
-                "classes": "always"
-            }
-        ],
         "import/prefer-default-export": "off",
         "react/jsx-props-no-spreading": "off",
         "no-unused-expressions": [
@@ -144,6 +147,13 @@
         "@typescript-eslint/no-use-before-define": ["error", {
             "functions": false,
             "classes": false
-        }]
+        }],
+        "react/jsx-filename-extension": [
+            "error",
+            {
+              "extensions": [".js", ".jsx", ".tsx", ".ts"]
+            }
+        ],
+        "import/extensions": ["error", "never"]
     }
 }
