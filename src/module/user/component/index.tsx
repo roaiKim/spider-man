@@ -9,6 +9,7 @@ class Main extends React.PureComponent {
     }
 
     render() {
+        const { avb } = this.props;
         return (
             <article className="ro-module-wrap ro-user-module">
                 User module
