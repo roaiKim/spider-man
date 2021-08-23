@@ -1,17 +1,13 @@
 import { Lifecycle, Module, register } from "core";
 import Main from "./component";
 
-const initialState = {
-
-};
+const initialState = {};
 
 class HomeModule extends Module {
-
-  @Lifecycle()
+    @Lifecycle()
     onRender() {
         console.log("type module action");
     }
-
 }
 
 const module = register(new HomeModule("type", initialState));
