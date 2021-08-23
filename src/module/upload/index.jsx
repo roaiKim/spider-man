@@ -1,6 +1,6 @@
-import {Lifecycle, Module, register} from "core";
-import {FileUploadService} from "@api/FileUploadService";
-import {message} from "antd";
+import { Lifecycle, Module, register } from "core";
+import { FileUploadService } from "@api/FileUploadService";
+import { message } from "antd";
 import Main from "./component";
 
 const initialState = {};

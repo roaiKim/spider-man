@@ -11,10 +11,12 @@ export function bootstrarp(option) {
 function windowResize() {
     const domHeight = document.body.offsetHeight;
     const domWidth = document.body.offsetWidth;
-    app.store.dispatch(websiteAction({
-        width: domWidth,
-        height: domHeight,
-    }));
+    app.store.dispatch(
+        websiteAction({
+            width: domWidth,
+            height: domHeight,
+        })
+    );
 }
 function renderRoot(EntryComponent, rootContainer) {
     ReactDOM.render(
@@ -26,7 +28,7 @@ function renderRoot(EntryComponent, rootContainer) {
         rootContainer,
         () => {
             // window.addEventListener("resize", windowResize);
-        },
+        }
     );
 }
 function injectRootContainer() {

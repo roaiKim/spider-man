@@ -6,12 +6,9 @@ import { connect } from "react-redux";
 import { actions } from "module/upload";
 
 class Main extends React.PureComponent {
-
     constructor(props) {
         super(props);
-        this.state = {
-
-        };
+        this.state = {};
     }
 
     render() {
@@ -21,11 +18,9 @@ class Main extends React.PureComponent {
                 <Upload
                     name="file"
                     action="http://localhost:3200/api/file/upload"
-                    headers={
-                        {
-                            authorization: "authorization-text",
-                        }
-                    }
+                    headers={{
+                        authorization: "authorization-text",
+                    }}
                     onChange={(info) => {
                         if (info.file.status !== "uploading") {
                             console.log(info.file, info.fileList);
@@ -54,7 +49,6 @@ class Main extends React.PureComponent {
             </article>
         );
     }
-
 }
 
 export default connect()(Main);

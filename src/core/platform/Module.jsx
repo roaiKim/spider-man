@@ -3,7 +3,6 @@ import { app } from "../app";
 import { setStateAction } from "../reducer";
 
 export class Module {
-
     name;
 
     initialState;
@@ -13,12 +12,12 @@ export class Module {
         this.initialState = initialState;
     }
 
-    onRegister() { }
+    onRegister() {}
 
     // eslint-disable-next-line no-unused-vars
-    onRender(routeParameters, location) { }
+    onRender(routeParameters, location) {}
 
-    onDestroy() { }
+    onDestroy() {}
 
     get state() {
         return this.rootState.app[this.name];
@@ -46,5 +45,4 @@ export class Module {
             app.store.dispatch(usePush ? push(currentURL, urlOrState) : replace(currentURL, urlOrState));
         }
     }
-
 }

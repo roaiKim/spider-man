@@ -6,12 +6,9 @@ import Parent from "./Parent";
 import Child from "./Child";
 
 class Main extends React.PureComponent {
-
     constructor(props) {
         super(props);
-        this.state = {
-
-        };
+        this.state = {};
     }
 
     render() {
@@ -23,13 +20,10 @@ class Main extends React.PureComponent {
                         <Child> ss </Child>
                     </Parent>
                 </div>
-                <div>
-                    {/* <TabComponent /> */}
-                </div>
+                <div>{/* <TabComponent /> */}</div>
             </article>
         );
     }
-
 }
 
 const mapStateToProps = (state) => ({

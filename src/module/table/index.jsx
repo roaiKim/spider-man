@@ -7,20 +7,20 @@ const initialState = {
 };
 
 class TableModule extends Module {
-
     @Lifecycle()
     onRender() {
-        TableService.getTable().then((response) => {
-            this.setState({ table: response });
-        }).catch((error) => {
-            console.error("TableModule onRender", error);
-        });
+        TableService.getTable()
+            .then((response) => {
+                this.setState({ table: response });
+            })
+            .catch((error) => {
+                console.error("TableModule onRender", error);
+            });
     }
 
     toLogin() {
         this.setHistory("/login");
     }
-
 }
 
 const module = register(new TableModule("table", initialState));

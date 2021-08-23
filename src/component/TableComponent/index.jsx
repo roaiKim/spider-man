@@ -22,7 +22,6 @@ import "./index.less";
  * @props onAdd 一个函数 新增
  */
 class TableComponent extends React.PureComponent {
-
     static defaultProps = {
         showNumber: false,
         showSelects: false,
@@ -34,7 +33,7 @@ class TableComponent extends React.PureComponent {
         columnMinWidth: 100,
         onDownload: false,
         onAdd: false,
-    }
+    };
 
     constructor(props) {
         super(props);
@@ -66,7 +65,7 @@ class TableComponent extends React.PureComponent {
             }));
         }
         return newColumns;
-    }
+    };
 
     onSortColumns = ({ oldIndex, newIndex }) => {
         if (oldIndex === newIndex) {
@@ -92,40 +91,44 @@ class TableComponent extends React.PureComponent {
         this.setState({ columns: newColumns });
     };
 
-    onColumnsResize = (column) => (event, { size }) => {
-        const { columnMinWidth } = this.props;
-        this.setState(({ columns }) => {
-            const nextColumns = [...columns];
-            const newColumn = nextColumns.find((item) => {
-                if (item.key) {
-                    return item.key === column.key;
-                }
-                return item.dataIndex === column.dataIndex;
+    onColumnsResize =
+        (column) =>
+        (event, { size }) => {
+            const { columnMinWidth } = this.props;
+            this.setState(({ columns }) => {
+                const nextColumns = [...columns];
+                const newColumn = nextColumns.find((item) => {
+                    if (item.key) {
+                        return item.key === column.key;
+                    }
+                    return item.dataIndex === column.dataIndex;
+                });
+                newColumn.width = size.width < columnMinWidth ? columnMinWidth : size.width;
+                return { columns: nextColumns };
             });
-            newColumn.width = size.width < columnMinWidth ? columnMinWidth : size.width;
-            return { columns: nextColumns };
-        });
-    };
+        };
 
     getTableColumns = () => {
         const { columns = [] } = this.state;
         const { showNumber } = this.props;
         if (showNumber) {
-            return [{
-                className: "text-overflow-ellipsis",
-                title: "No.",
-                align: "center",
-                dataIndex: "no",
-                fixed: "left",
-                key: "no",
-                ignore: true,
-                width: 60,
-                render: (text, arrayColumns, index) => index + 1,
-            },
-            ...columns].filter((item) => !item.hide);
+            return [
+                {
+                    className: "text-overflow-ellipsis",
+                    title: "No.",
+                    align: "center",
+                    dataIndex: "no",
+                    fixed: "left",
+                    key: "no",
+                    ignore: true,
+                    width: 60,
+                    render: (text, arrayColumns, index) => index + 1,
+                },
+                ...columns,
+            ].filter((item) => !item.hide);
         }
         return columns.filter((item) => !item.hide);
-    }
+    };
 
     getRowSelection = () => {
         const { showSelects, rowSelection = {} } = this.props;
@@ -137,10 +140,9 @@ class TableComponent extends React.PureComponent {
             };
         }
         return null;
-    }
+    };
 
     getTableXWidth = (columns) => {
-
         // const { columns = [] } = this.state;
         const width = columns.reduce((prev, next) => {
             if (typeof next.width === "number") {
@@ -150,7 +152,7 @@ class TableComponent extends React.PureComponent {
             return prev + 140;
         }, 0);
         return width + 100;
-    }
+    };
 
     onDownload = () => {
         const { onDownload } = this.props;
@@ -163,17 +165,14 @@ class TableComponent extends React.PureComponent {
         } else {
             throw new Error("table 的 onDownload 属性只支持 true/function");
         }
-    }
+    };
 
     onInitialDownloadAction = () => {
         // 默认的下载动作
-    }
+    };
 
     render() {
-        const {
-            dataSource, sortColumnsContainer, sortColumnsTitle, onAdd,
-            onDownload, title, OperationAction, showSortColumns,
-        } = this.props;
+        const { dataSource, sortColumnsContainer, sortColumnsTitle, onAdd, onDownload, title, OperationAction, showSortColumns } = this.props;
         const { columns } = this.state;
         const tableColumns = this.getTableColumns();
 
@@ -182,43 +181,31 @@ class TableComponent extends React.PureComponent {
         return (
             <div className="ro-component-table">
                 <div className="ro-table-header">
-                    <div className="ro-header-title-container">
-                        {
-                            titleIsString ? title : <h3>{title}</h3>
-                        }
-                    </div>
+                    <div className="ro-header-title-container">{titleIsString ? title : <h3>{title}</h3>}</div>
                     <div className="ro-header-operator-container">
-                        <div>
-                            {OperationAction || null}
-                        </div>
-                        {
-                            onAdd && (
-                                <Button icon={<PlusOutlined />} onClick={this.onAdd}>
-                                    Add
-                                </Button>
-                            )
-                        }
-                        {
-                            onDownload && (
-                                <Button icon={<DownloadOutlined />} onClick={this.onDownload}>
-                                    Download
-                                </Button>
-                            )
-                        }
-                        {
-                            showSortColumns && (
-                                <Popover
-                                    arrowPointAtCenter
-                                    getPopupContainer={sortColumnsContainer}
-                                    placement="bottomRight"
-                                    title={sortColumnsTitle}
-                                    content={<SortColumnsContainer onChange={this.onChangeColumns} columns={columns} onSortColumns={this.onSortColumns} />}
-                                    trigger="click"
-                                >
-                                    <Button icon={<UnorderedListOutlined />} />
-                                </Popover>
-                            )
-                        }
+                        <div>{OperationAction || null}</div>
+                        {onAdd && (
+                            <Button icon={<PlusOutlined />} onClick={this.onAdd}>
+                                Add
+                            </Button>
+                        )}
+                        {onDownload && (
+                            <Button icon={<DownloadOutlined />} onClick={this.onDownload}>
+                                Download
+                            </Button>
+                        )}
+                        {showSortColumns && (
+                            <Popover
+                                arrowPointAtCenter
+                                getPopupContainer={sortColumnsContainer}
+                                placement="bottomRight"
+                                title={sortColumnsTitle}
+                                content={<SortColumnsContainer onChange={this.onChangeColumns} columns={columns} onSortColumns={this.onSortColumns} />}
+                                trigger="click"
+                            >
+                                <Button icon={<UnorderedListOutlined />} />
+                            </Popover>
+                        )}
                     </div>
                 </div>
                 <Table
@@ -229,18 +216,15 @@ class TableComponent extends React.PureComponent {
                     dataSource={dataSource}
                     bordered
                     size="small"
-                    components={
-                        {
-                            header: {
-                                cell: ResizeableTitle,
-                            },
-                        }
-                    }
+                    components={{
+                        header: {
+                            cell: ResizeableTitle,
+                        },
+                    }}
                 />
             </div>
         );
     }
-
 }
 
 export { TableComponent };

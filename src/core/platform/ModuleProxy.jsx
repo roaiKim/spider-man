@@ -5,7 +5,6 @@ import { executeAction } from "../module";
 import { setStateAction } from "../reducer";
 
 export class ModuleProxy {
-
     module;
 
     actions;
@@ -25,7 +24,6 @@ export class ModuleProxy {
         const lifecycleListener = this.module;
         const { actions } = this;
         return class extends React.PureComponent {
-
             static displayName = `ModuleBoundary(${moduleName})`;
 
             constructor(props) {
@@ -66,8 +64,6 @@ export class ModuleProxy {
             render() {
                 return <ComponentType {...this.props} />;
             }
-
         };
     }
-
 }

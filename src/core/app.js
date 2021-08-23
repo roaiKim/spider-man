@@ -9,7 +9,6 @@ function composeWithDevTools(enhancer) {
         const extension = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
         if (extension) {
             composeEnhancers = extension({
-
                 // Ref: https://github.com/zalmoxisus/redux-devtools-extension/blob/master/docs/API/Arguments.md
                 actionsBlacklist: [LOADING_ACTION],
             });

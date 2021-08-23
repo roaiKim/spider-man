@@ -6,12 +6,9 @@ import { TableComponent } from "@component";
 import "./index.less";
 
 class Main extends React.PureComponent {
-
     constructor(props) {
         super(props);
-        this.state = {
-
-        };
+        this.state = {};
     }
 
     columns = [
@@ -106,7 +103,6 @@ class Main extends React.PureComponent {
             width: 180,
         },
         {
-
             title: "娃哈哈",
             dataIndex: "confirmedAt",
             key: "confirmedAt",
@@ -233,12 +229,12 @@ class Main extends React.PureComponent {
             width: 140,
             render: (date) => date && dayJs(date).format("YYYY-MM-DD HH:mm:ss"),
         },
-    ]
+    ];
 
     toLogin = () => {
         const { dispatch } = this.props;
         dispatch(actions.toLogin());
-    }
+    };
 
     render() {
         const { source, location } = this.props;
@@ -260,7 +256,6 @@ class Main extends React.PureComponent {
             </article>
         );
     }
-
 }
 
 const mapStateToProps = (state) => ({

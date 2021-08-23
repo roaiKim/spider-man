@@ -8,7 +8,6 @@ import Menu from "./Menu";
 import Nofound from "./404Nofound";
 
 class Main extends React.PureComponent {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -38,7 +37,6 @@ class Main extends React.PureComponent {
             </article>
         );
     }
-
 }
 
 const mapStateToProps = (state) => ({

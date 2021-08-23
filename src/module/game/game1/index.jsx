@@ -1,17 +1,13 @@
 import { Lifecycle, Module, register } from "core";
 import Main from "./component";
 
-const initialState = {
-
-};
+const initialState = {};
 
 class Game1Module extends Module {
-
-  @Lifecycle()
+    @Lifecycle()
     onRender() {
         console.log("game1 module action");
     }
-
 }
 
 const module = register(new Game1Module("game1", initialState));

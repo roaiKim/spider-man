@@ -6,23 +6,15 @@ import { cacheMenu } from "service/MenuLoader";
 
 const { SubMenu } = Menu;
 class MemuComponent extends React.PureComponent {
-
     renderMenu(menu) {
-        return (
-            menu.children
-                ? (
-                    <SubMenu key={menu.id} title={menu.title} icon={menu && menu.icon}>
-                        {
-
-                            menu.children.map((item) => this.renderMenu(item))
-                        }
-                    </SubMenu>
-                )
-                : (
-                    <Menu.Item icon={menu.icon || null} key={(menu.page && menu.page.path) || ""}>
-                        <Link to={(menu.page && menu.page.path) || "/"}>{(menu.page && menu.page.title)}</Link>
-                    </Menu.Item>
-                )
+        return menu.children ? (
+            <SubMenu key={menu.id} title={menu.title} icon={menu && menu.icon}>
+                {menu.children.map((item) => this.renderMenu(item))}
+            </SubMenu>
+        ) : (
+            <Menu.Item icon={menu.icon || null} key={(menu.page && menu.page.path) || ""}>
+                <Link to={(menu.page && menu.page.path) || "/"}>{menu.page && menu.page.title}</Link>
+            </Menu.Item>
         );
     }
 
@@ -31,19 +23,12 @@ class MemuComponent extends React.PureComponent {
 
         return (
             <nav className="ro-nav">
-                <Menu
-                    onClick={this.handleClick}
-                    inlineCollapsed={collapsed}
-                    mode="inline"
-                >
-                    {
-                        cacheMenu.map((item) => this.renderMenu(item))
-                    }
+                <Menu onClick={this.handleClick} inlineCollapsed={collapsed} mode="inline">
+                    {cacheMenu.map((item) => this.renderMenu(item))}
                 </Menu>
             </nav>
         );
     }
-
 }
 
 const mapStateToProps = (state) => ({

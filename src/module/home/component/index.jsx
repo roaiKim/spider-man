@@ -1,16 +1,11 @@
 import React from "react";
-import {
-    UserOutlined, ShoppingCartOutlined, CameraOutlined, CarOutlined,
-} from "@icon";
+import { UserOutlined, ShoppingCartOutlined, CameraOutlined, CarOutlined } from "@icon";
 import "./index.less";
 
 class Main extends React.PureComponent {
-
     constructor(props) {
         super(props);
-        this.state = {
-
-        };
+        this.state = {};
     }
 
     render() {
@@ -49,7 +44,6 @@ class Main extends React.PureComponent {
             </article>
         );
     }
-
 }
 
 export default Main;

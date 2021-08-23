@@ -1,4 +1,3 @@
-
 const http = {
     dev: "http://119.29.53.45",
     test: "",
@@ -7,7 +6,6 @@ const http = {
 };
 
 export function completePath(path, type = "dev") {
-
     /* if (process.env.NODE_ENV !== "production") {
         return path;
     } */

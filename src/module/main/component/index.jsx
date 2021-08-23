@@ -10,8 +10,7 @@ import MainLayout from "./MainLayout";
 import "./index.less";
 
 class Main extends React.PureComponent {
-
-    refreshTime = 0
+    refreshTime = 0;
 
     constructor(props) {
         super(props);
@@ -42,14 +41,13 @@ class Main extends React.PureComponent {
         const { dispatch } = this.props;
         dispatch(actions.fetchLoginUser());
         this.refreshTime += 1;
-    }
+    };
 
     componentWillUnmount() {
         clearTimeout(this.timer);
     }
 
     render() {
-
         const { content } = this.state;
         const { isCheckLoading } = this.props;
         // isCheckLoading 为 true, 说明 check 接口未返回或者失败
@@ -67,7 +65,6 @@ class Main extends React.PureComponent {
             </Switch>
         );
     }
-
 }
 
 const mapStateToProps = (state) => ({

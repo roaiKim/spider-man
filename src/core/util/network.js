@@ -8,95 +8,91 @@ if (process.env.NODE_ENV === "development") {
     window.httpRequestMap = httpRequestMap;
 }
 
-axios.interceptors.response.use((response) => {
-
-    // 删除 map url
-    if (response && response.config && response.config.url) {
-        if (httpRequestMap.has(response.config.url)) {
-            httpRequestMap.delete(response.config.url);
-        }
-    }
-    return new Promise((resolve, reject) => {
-
-        // console.log("responses bail", response);
-        // code 不为 0 ，则请求时成功的 但是 没有正确处理 如 新建用户时 但是用户已存在
-        if (response.data.code !== 0) {
-            if (response.config.bail) {
-                reject(response.data);
-            } else {
-                if (response.data && response.data.message) {
-                    message.error(response.data.message);
-                }
-                reject(new Error(response.data.message));
+axios.interceptors.response.use(
+    (response) => {
+        // 删除 map url
+        if (response && response.config && response.config.url) {
+            if (httpRequestMap.has(response.config.url)) {
+                httpRequestMap.delete(response.config.url);
             }
         }
-        resolve(response.data.data);
-    });
-}, (error) => {
-
-    // 删除 map url
-    // console.log("error.responses", error.response);
-    if (error.response && error.response.config && error.response.config.url) {
-        if (httpRequestMap.has(error.response.config.url)) {
-            httpRequestMap.delete(error.response.config.url);
-        }
-    }
-
-    if (axios.isCancel(error)) {
-
-        // console.log('Request canceled', error.message);
-        // reject(new Error(error.message));
-    }
-
-    return new Promise((resolve, reject) => {
-
-        // 这个是由于 取消重复的请求造成的错误
-
-        if (error.response) {
-
-            // 这里是 http 错误
-            // console.log("error.response", error.response);
-            // config 含有 bail 属性 则错误自己处理
-            if (error.response.config && error.response.config.bail) {
-                const resp = {
-                    data: error.response.data,
-                    status: error.response.status,
-                };
-                reject(resp);
-            } else {
-                let errorMessage = "";
-                switch (error.response.status) {
-                case 401:
-                    errorMessage = "未登录";
-                    break;
-                case 403:
-                    errorMessage = "没有权限";
-                    break;
-                case 502:
-                    errorMessage = "网络错误/502";
-                    break;
-                case 504:
-                    errorMessage = "网络超时/504";
-                    break;
-                default:
-                    errorMessage = "服务器错误";
-                    break;
+        return new Promise((resolve, reject) => {
+            // console.log("responses bail", response);
+            // code 不为 0 ，则请求时成功的 但是 没有正确处理 如 新建用户时 但是用户已存在
+            if (response.data.code !== 0) {
+                if (response.config.bail) {
+                    reject(response.data);
+                } else {
+                    if (response.data && response.data.message) {
+                        message.error(response.data.message);
+                    }
+                    reject(new Error(response.data.message));
                 }
-                // eslint-disable-next-line prefer-promise-reject-errors
-                reject({
-                    status: error.response.status,
-                    message: errorMessage,
-                });
-
-                // message.error(errorMessage);
             }
-        } else {
-
-            // TODO 这里是网络错误
-            reject(new Error("网络错误"));
+            resolve(response.data.data);
+        });
+    },
+    (error) => {
+        // 删除 map url
+        // console.log("error.responses", error.response);
+        if (error.response && error.response.config && error.response.config.url) {
+            if (httpRequestMap.has(error.response.config.url)) {
+                httpRequestMap.delete(error.response.config.url);
+            }
         }
-    });
-});
+
+        if (axios.isCancel(error)) {
+            // console.log('Request canceled', error.message);
+            // reject(new Error(error.message));
+        }
+
+        return new Promise((resolve, reject) => {
+            // 这个是由于 取消重复的请求造成的错误
+
+            if (error.response) {
+                // 这里是 http 错误
+                // console.log("error.response", error.response);
+                // config 含有 bail 属性 则错误自己处理
+                if (error.response.config && error.response.config.bail) {
+                    const resp = {
+                        data: error.response.data,
+                        status: error.response.status,
+                    };
+                    reject(resp);
+                } else {
+                    let errorMessage = "";
+                    switch (error.response.status) {
+                        case 401:
+                            errorMessage = "未登录";
+                            break;
+                        case 403:
+                            errorMessage = "没有权限";
+                            break;
+                        case 502:
+                            errorMessage = "网络错误/502";
+                            break;
+                        case 504:
+                            errorMessage = "网络超时/504";
+                            break;
+                        default:
+                            errorMessage = "服务器错误";
+                            break;
+                    }
+                    // eslint-disable-next-line prefer-promise-reject-errors
+                    reject({
+                        status: error.response.status,
+                        message: errorMessage,
+                    });
+
+                    // message.error(errorMessage);
+                }
+            } else {
+                // TODO 这里是网络错误
+                reject(new Error("网络错误"));
+            }
+        });
+    }
+);
 
 /**
  *
@@ -139,7 +135,6 @@ export function ajax(method, path, pathParams, request, axiosExtraConfig = {}, c
 
     // 如果取消上一次的
     if (cancelPrev) {
-
         // 判断 是否有相同的未取消的 请求
         if (httpRequestMap.has(fullUrl)) {
             httpRequestMap.get(fullUrl).cancel && httpRequestMap.get(fullUrl).cancel("Request canceled because of Repeated");

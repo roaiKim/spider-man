@@ -1,19 +1,20 @@
 /* eslint-disable no-lonely-if */
-import {
-    AppleOutlined, AndroidOutlined, WindowsOutlined, HomeOutlined, GithubOutlined, InstagramOutlined, FileTextOutlined,
-} from "@icon";
+import { AppleOutlined, AndroidOutlined, WindowsOutlined, HomeOutlined, GithubOutlined, InstagramOutlined, FileTextOutlined } from "@icon";
 import React from "react";
 
+// eslint-disable-next-line no-undef
 const modules = require.context("module/", true, /\.menu\.js$/);
 
 // 这个是由于 webpack 本身的 bug 导致的, webpack.config.js 文件中， 如果 resolve.modules 定义了 则 require.context 会有多(双)倍的
 const modulesId = modules.keys().filter((item) => item.startsWith("module"));
 
 // console.log("modulesId", modulesId);
-const cacheModules = modulesId.map((id) => ({
-    moduleId: id,
-    module: modules(id).default,
-})).filter((item) => !item.module.disabled);
+const cacheModules = modulesId
+    .map((id) => ({
+        moduleId: id,
+        module: modules(id).default,
+    }))
+    .filter((item) => !item.module.disabled);
 
 // console.log("cacheRoute", cacheModules);
 const map = [];
@@ -107,7 +108,7 @@ const menuMap = {
             filePath: moduleId,
         };
     });
-}());
+})();
 
 // 提取路径并分级
 (function mapMenu() {
@@ -238,13 +239,13 @@ const menuMap = {
             }
         }
     });
-
-}());
+})();
 
 const cacheMenu = map.sort((prev, next) => prev.order - next.order);
 
 const cacheRoute = cacheModules.map(({ module }) => ({ ...module }));
 
+// eslint-disable-next-line no-undef
 if (process.env.NODE_ENV === "development") {
     // eslint-disable-next-line no-underscore-dangle
     window._cacheMenu = cacheMenu;

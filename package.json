@@ -50,7 +50,8 @@
     "build": "webpack --config ./webpack/webpack.config.production.js",
     "eslint": "./node_modules/.bin/eslint src/** --config .eslintrc.json",
     "eslint:fix": "./node_modules/.bin/eslint --fix src/** --config .eslintrc.json",
-    "api": "node webpack/t.js"
+    "api": "node webpack/t.js",
+    "prettier": "prettier --config .prettierrc --write src/**/**.{jsx,tsx,js,less}"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.29.2",

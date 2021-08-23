@@ -65,11 +65,11 @@ export function rootReducer(history) {
 export function showLoading(state, identifier = "global") {
     return state.loading[identifier] > 0;
 }
-export const executeMethodMiddleware = (() => (next) => (action) => {
+export const executeMethodMiddleware = () => (next) => (action) => {
     const result = next(action);
     const handler = app.actionHandlers[action.type];
     if (handler) {
         handler(...action.payload);
     }
     return result;
-});
+};

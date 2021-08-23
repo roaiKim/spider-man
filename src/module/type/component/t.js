@@ -2,19 +2,19 @@ const doc = require("./swagger.json");
 
 function translateType(properties) {
     switch (properties.type) {
-    case "array":
-        if (properties.items && properties.items.$ref) {
-            const value = properties.items.$ref.split("/");
-            return value[value.length - 1];
-        }
-        return "s";
-    case "number":
-    case "integer":
-        return "number";
-    case "string":
-        return "string";
-    default:
-        console.log("properties.type", properties.type);
+        case "array":
+            if (properties.items && properties.items.$ref) {
+                const value = properties.items.$ref.split("/");
+                return value[value.length - 1];
+            }
+            return "s";
+        case "number":
+        case "integer":
+            return "number";
+        case "string":
+            return "string";
+        default:
+            console.log("properties.type", properties.type);
     }
 }
 
@@ -44,4 +44,3 @@ export function generate() {
     const { definitions } = doc;
     return generateType(definitions);
 }
-

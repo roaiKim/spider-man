@@ -26,8 +26,7 @@ export async function executeAction(handler, ...payload) {
     try {
         await handler(...payload);
     } catch (error) {
-
-    // TODO 这里需要错误处理
+        // TODO 这里需要错误处理
     }
 }
 function getKeys(module) {

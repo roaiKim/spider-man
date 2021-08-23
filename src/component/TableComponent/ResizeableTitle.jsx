@@ -3,9 +3,7 @@ import React from "react";
 import { Resizable } from "react-resizable";
 
 const ResizeableTitle = (props) => {
-    const {
-        onResize, width, ...restProps
-    } = props;
+    const { onResize, width, ...restProps } = props;
     if (!width || (props.style && props.style.position === "sticky")) {
         return <th {...restProps} />;
     }

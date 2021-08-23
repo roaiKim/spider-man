@@ -4,12 +4,9 @@ import { connect } from "react-redux";
 import "./index.less";
 
 class Main extends React.PureComponent {
-
     constructor(props) {
         super(props);
-        this.state = {
-
-        };
+        this.state = {};
     }
 
     columns = [
@@ -25,24 +22,18 @@ class Main extends React.PureComponent {
             key: "absolutePath",
             width: 230,
         },
-    ]
+    ];
 
     render() {
         const { source } = this.props;
         return (
             <article className="ro-module-wrap ro-file-module">
                 <div className="ro-table-wrap">
-                    <TableComponent
-                        title="customer table"
-                        showNumber
-                        columns={this.columns}
-                        dataSource={source ? source.list : null}
-                    />
+                    <TableComponent title="customer table" showNumber columns={this.columns} dataSource={source ? source.list : null} />
                 </div>
             </article>
         );
     }
-
 }
 
 const mapStateToProps = (state) => ({

@@ -7,25 +7,23 @@ const initialState = {
 };
 
 class NavigationModule extends Module {
-
-  @Lifecycle()
+    @Lifecycle()
     onRender() {
         console.log("navigation module action");
     }
 
-  logOut() {
-      localStorage.removeItem(WEB_TOKEN);
-      this.setHistory("/login");
-  }
+    logOut() {
+        localStorage.removeItem(WEB_TOKEN);
+        this.setHistory("/login");
+    }
 
-  toggleCollapseMenu() {
-      const { collapsed } = this.state;
-      console.log("ds", collapsed);
-      this.setState({ collapsed: !collapsed });
-      // 设置 localStorage
-      localStorage.setItem(COLLAPSED_MENU, !collapsed);
-  }
-
+    toggleCollapseMenu() {
+        const { collapsed } = this.state;
+        console.log("ds", collapsed);
+        this.setState({ collapsed: !collapsed });
+        // 设置 localStorage
+        localStorage.setItem(COLLAPSED_MENU, !collapsed);
+    }
 }
 
 const module = register(new NavigationModule("navigation", initialState));

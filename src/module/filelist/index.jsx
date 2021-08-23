@@ -1,6 +1,4 @@
-import {
-    Lifecycle, Module, register, Loading,
-} from "core";
+import { Lifecycle, Module, register, Loading } from "core";
 import { FileManagementService } from "@api/FileManagementService";
 import Main from "./component";
 
@@ -9,7 +7,6 @@ const initialState = {
 };
 
 class UserModule extends Module {
-
     @Lifecycle()
     onRender() {
         this.getlist();
@@ -21,7 +18,6 @@ class UserModule extends Module {
             this.setState({ list: response });
         });
     }
-
 }
 
 const module = register(new UserModule("file", initialState));
