@@ -5,6 +5,7 @@ import { actions } from "module/navigation";
 import { WithConfirm } from "@tools";
 import { connect } from "react-redux";
 import { TabComponent } from "@component";
+import websiteLogo from "asset/images/global/logo.jpeg";
 import "./index.less";
 
 class Header extends React.PureComponent {
@@ -91,7 +92,7 @@ class Header extends React.PureComponent {
         return (
             <header className="ro-navigation-header ro-icon">
                 <section>
-                    <img src={require("asset/images/global/logo.jpeg")} alt="" />
+                    <img src={websiteLogo} alt="" />
                     <h3>Website</h3>
                 </section>
                 <MenuFoldOutlined onClick={this.toggleCollapseMenu} />

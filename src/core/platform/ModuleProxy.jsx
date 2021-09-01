@@ -32,6 +32,7 @@ export class ModuleProxy {
             }
 
             componentDidUpdate(prevProps) {
+                // onRender 在初始化中也会执行
                 const prevLocation = prevProps.location;
                 const { props } = this;
                 const currentLocation = props.location;

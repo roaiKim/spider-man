@@ -8,6 +8,7 @@ import { websiteAction } from "../reducer";
 export function bootstrarp(option) {
     renderRoot(option.entryComponent, option.rootContainer || injectRootContainer());
 }
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function windowResize() {
     const domHeight = document.body.offsetHeight;
     const domWidth = document.body.offsetWidth;
@@ -32,7 +33,7 @@ function renderRoot(EntryComponent, rootContainer) {
     );
 }
 function injectRootContainer() {
-    const rootContainer = document.createElement("main");
+    const rootContainer = document.createElement("div");
     rootContainer.id = "react-app-root";
     document.body.appendChild(rootContainer);
     return rootContainer;

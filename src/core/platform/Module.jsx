@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { push, replace } from "connected-react-router";
 import { app } from "../app";
 import { setStateAction } from "../reducer";

@@ -20,21 +20,21 @@ class Main extends React.PureComponent {
         const { website } = this.props;
 
         return (
-            <article className="ro-main-wrap">
+            <main className="ro-main-wrap">
                 <Header />
-                <section className="ro-main">
+                <main className="ro-main">
                     <Menu />
-                    <main className="ro-body-container">
+                    <section className="ro-body-container">
                         <Switch>
                             {cacheRoute.map(({ path, Component }) => (
                                 <Route key={path} path={path} component={Component} />
                             ))}
                             <Route component={Nofound} />
                         </Switch>
-                    </main>
-                    <footer>--</footer>
-                </section>
-            </article>
+                    </section>
+                </main>
+                <footer>--</footer>
+            </main>
         );
     }
 }
