@@ -1,1 +1,1 @@
-export { WithConfirm } from "./decorator";
+export { WithConfirm, Auth } from "./decorator";

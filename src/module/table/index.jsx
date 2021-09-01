@@ -11,6 +11,7 @@ class TableModule extends Module {
     onRender() {
         TableService.getTable()
             .then((response) => {
+                console.log("TableService-", response);
                 this.setState({ table: response });
             })
             .catch((error) => {

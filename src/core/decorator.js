@@ -8,7 +8,7 @@ export function createActionHandlerDecorator(interceptor) {
         // eslint-disable-next-line no-param-reassign
         descriptor.value = function (...args) {
             const rootState = app.store.getState();
-            interceptor(fn.bind(this, ...args), rootState);
+            return interceptor(fn.bind(this, ...args), rootState);
         };
         return descriptor;
     };
