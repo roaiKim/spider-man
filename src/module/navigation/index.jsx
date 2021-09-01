@@ -24,6 +24,10 @@ class NavigationModule extends Module {
         // 设置 localStorage
         localStorage.setItem(COLLAPSED_MENU, !collapsed);
     }
+
+    open(url, historyState) {
+        this.setHistory(url);
+    }
 }
 
 const module = register(new NavigationModule("navigation", initialState));
