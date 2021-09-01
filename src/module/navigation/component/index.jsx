@@ -5,7 +5,8 @@ import { actions } from "module/navigation";
 import { WithConfirm } from "@tools";
 import { connect } from "react-redux";
 import { TabComponent } from "@component";
-import websiteLogo from "asset/images/global/logo.jpeg";
+import websiteLogoImg from "asset/images/global/logo.jpeg";
+import headerImg from "asset/images/global/header.jpg";
 import "./index.less";
 
 class Header extends React.PureComponent {
@@ -92,7 +93,7 @@ class Header extends React.PureComponent {
         return (
             <header className="ro-navigation-header ro-icon">
                 <section>
-                    <img src={websiteLogo} alt="" />
+                    <img src={websiteLogoImg} alt="" />
                     <h3>Website</h3>
                 </section>
                 <MenuFoldOutlined onClick={this.toggleCollapseMenu} />
@@ -103,7 +104,7 @@ class Header extends React.PureComponent {
                 </Badge>
                 <a href="#" className="ro-profile">
                     <span>rosen</span>
-                    <img alt="" src={require("asset/images/global/header.jpg")} />
+                    <img alt="" src={headerImg} />
                 </a>
                 <Dropdown overlay={this.menu()} trigger="click">
                     <SettingOutlined />
