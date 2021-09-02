@@ -1,37 +1,36 @@
 /* eslint-disable max-classes-per-file */
 import React from "react";
 import { app } from "../app";
-import { executeAction } from "../module";
+import { executeAction, ActionCreators } from "../module";
 import { setStateAction } from "../reducer";
+import { Module, ModuleLifecycleListener } from "./Module";
+import { RouteComponentProps } from "react-router";
 
-export class ModuleProxy {
-    module;
+interface AttachLifecycleOption {
+    retainStateOnLeave?: boolean;
+}
 
-    actions;
+export class ModuleProxy<M extends Module<{}>> {
+    constructor(private module: M, private actions: ActionCreators<M>) {}
 
-    constructor(module, actions) {
-        this.module = module;
-        this.actions = actions;
-    }
-
-    getActions() {
+    getActions(): ActionCreators<any> {
         return this.actions;
     }
 
-    attachLifecycle(ComponentType, config = {}) {
+    attachLifecycle<P extends {}>(ComponentType: React.ComponentType<P>, config: AttachLifecycleOption = {}): React.ComponentType<P & RouteComponentProps> {
         const moduleName = this.module.name;
         const { initialState } = this.module;
-        const lifecycleListener = this.module;
-        const { actions } = this;
-        return class extends React.PureComponent {
+        const lifecycleListener = this.module as ModuleLifecycleListener;
+        const actions = this.actions as any;
+        return class extends React.PureComponent<P & RouteComponentProps> {
             static displayName = `ModuleBoundary(${moduleName})`;
 
-            constructor(props) {
+            constructor(props: P & RouteComponentProps) {
                 super(props);
                 this.initialLifecycle();
             }
 
-            componentDidUpdate(prevProps) {
+            componentDidUpdate(prevProps: Readonly<P & RouteComponentProps>) {
                 // onRender 在初始化中也会执行
                 const prevLocation = prevProps.location;
                 const { props } = this;

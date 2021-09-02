@@ -1,7 +1,7 @@
 import { MainComponent } from "module/main";
-import { bootstrarp } from "core";
+import { bootstrap } from "core";
 import "asset/css/index.less";
 
-bootstrarp({ entryComponent: MainComponent });
+bootstrap({ entryComponent: MainComponent });
 
 // ReactDOM.render(<Main />, document.getElementById("react-app"))

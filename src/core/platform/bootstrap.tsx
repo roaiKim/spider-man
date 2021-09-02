@@ -1,12 +1,18 @@
 import { ConnectedRouter } from "connected-react-router";
-import React from "react";
+import React, { ComponentType } from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { app } from "../app";
 import { websiteAction } from "../reducer";
 
-export function bootstrarp(option) {
-    renderRoot(option.entryComponent, option.rootContainer || injectRootContainer());
+interface BootstrapOption {
+    entryComponent: ComponentType;
+    rootContainer?: HTMLElement;
+    hasResize?: boolean;
+}
+
+export function bootstrap(option: BootstrapOption) {
+    renderRoot(option.entryComponent, option.rootContainer || injectRootContainer(), option.hasResize || false);
 }
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function windowResize() {
@@ -19,7 +25,7 @@ function windowResize() {
         })
     );
 }
-function renderRoot(EntryComponent, rootContainer) {
+function renderRoot(EntryComponent: ComponentType, rootContainer: HTMLElement, hasResize: boolean) {
     ReactDOM.render(
         <Provider store={app.store}>
             <ConnectedRouter history={app.browserHistory}>
@@ -28,7 +34,7 @@ function renderRoot(EntryComponent, rootContainer) {
         </Provider>,
         rootContainer,
         () => {
-            // window.addEventListener("resize", windowResize);
+            if (hasResize) window.addEventListener("resize", windowResize);
         }
     );
 }

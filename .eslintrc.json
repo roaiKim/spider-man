@@ -133,7 +133,8 @@
             "error",
             {
               "types": {
-                "object": false
+                "object": false,
+                "{}": false
               }
             }
           ]
