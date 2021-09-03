@@ -1,9 +1,13 @@
 import { routerMiddleware } from "connected-react-router";
-import { createBrowserHistory } from "history";
-import { applyMiddleware, createStore, compose } from "redux";
+import { createBrowserHistory, History } from "history";
+import { applyMiddleware, createStore, compose, StoreEnhancer, Store } from "redux";
+import { ActionHandler } from "./module";
 import { rootReducer, executeMethodMiddleware, LOADING_ACTION } from "./reducer";
+import { State } from "./type";
 
-function composeWithDevTools(enhancer) {
+declare const window: any;
+
+function composeWithDevTools(enhancer: StoreEnhancer): StoreEnhancer {
     let composeEnhancers = compose;
     if (process.env.NODE_ENV !== "production") {
         const extension = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
@@ -16,7 +20,14 @@ function composeWithDevTools(enhancer) {
     }
     return composeEnhancers(enhancer);
 }
-function createApp() {
+
+interface App {
+    readonly browserHistory: History;
+    readonly store: Store<State>;
+    readonly actionHandlers: { [actionType: string]: ActionHandler };
+}
+
+function createApp(): App {
     const browserHistory = createBrowserHistory();
     const store = createStore(rootReducer(browserHistory), composeWithDevTools(applyMiddleware(routerMiddleware(browserHistory), executeMethodMiddleware)));
     return {
@@ -25,4 +36,5 @@ function createApp() {
         actionHandlers: {},
     };
 }
+
 export const app = createApp();

@@ -2,8 +2,9 @@ const env = require("./env");
 const webpack = require("webpack");
 const path = require("path");
 const HTMLPlugin = require("html-webpack-plugin");
-const {CleanWebpackPlugin} = require("clean-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const ForkTSCheckerPlugin = require("fork-ts-checker-webpack-plugin");
 
 module.exports = {
     devServer: {
@@ -67,7 +68,7 @@ module.exports = {
                     ],
                     plugins: [
                         ["@babel/plugin-transform-runtime"],
-                        ["@babel/plugin-proposal-decorators", {legacy: true}],
+                        ["@babel/plugin-proposal-decorators", { legacy: true }],
                         ["@babel/plugin-proposal-class-properties"],
                         [
                             "import",
@@ -118,6 +119,9 @@ module.exports = {
             template: `${env.src}/index.html`,
             favicon: `${env.src}/favicon.ico`,
         }),
+        // new ForkTSCheckerPlugin({
+        //     typescript: true,
+        // }),
         new CleanWebpackPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         // new BundleAnalyzerPlugin()

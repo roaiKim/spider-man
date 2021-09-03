@@ -1,10 +1,14 @@
-import axios, { CancelToken } from "axios";
+/* eslint-disable indent */
+import axios, { Method, AxiosRequestConfig } from "axios";
 import { message } from "antd";
-import { WEB_TOKEN } from "@tools/enumType";
 import { completePath } from "./config";
+
+const CancelToken = axios.CancelToken;
+const WEB_TOKEN = "WEB_TOKEN";
 
 const httpRequestMap = new Map();
 if (process.env.NODE_ENV === "development") {
+    // @ts-ignore
     window.httpRequestMap = httpRequestMap;
 }
 
@@ -19,16 +23,16 @@ axios.interceptors.response.use(
         return new Promise((resolve, reject) => {
             // console.log("responses bail", response);
             // code 不为 0 ，则请求时成功的 但是 没有正确处理 如 新建用户时 但是用户已存在
-            if (response.data.code !== 0) {
-                if (response.config.bail) {
-                    reject(response.data);
-                } else {
-                    if (response.data && response.data.message) {
-                        message.error(response.data.message);
-                    }
-                    reject(new Error(response.data.message));
-                }
-            }
+            // if (response.data.code !== 0) {
+            //     if (response.config.bail) {
+            //         reject(response.data);
+            //     } else {
+            //         if (response.data && response.data.message) {
+            //             message.error(response.data.message);
+            //         }
+            //         reject(new Error(response.data.message));
+            //     }
+            // }
             resolve(response.data.data);
         });
     },
@@ -112,13 +116,20 @@ axios.interceptors.response.use(
  * ajax("GET", "/api/user/check/:userId", {userId: 980}, request, {bail: true}, true)
  *
  */
-export function ajax(method, path, pathParams, request, axiosExtraConfig = {}, cancelPrev = false) {
+export function ajax<Request, Response>(
+    method: Method,
+    path: string,
+    pathParams: object,
+    request: Request,
+    axiosExtraConfig: AxiosRequestConfig = {},
+    cancelPrev = false
+): Promise<Response> {
     const fullUrl = completePath(getURL(path, pathParams));
 
     // bail 用来 判断 当发生错误时 是否自动处理(如弹窗等) authorization
     const authorization = localStorage.getItem(WEB_TOKEN) || "";
     const { headers = {}, ...restConfig } = axiosExtraConfig;
-    const config = {
+    const config: AxiosRequestConfig = {
         headers: {
             Authorization: `Bearer ${authorization}`,
             ...headers,
@@ -151,7 +162,7 @@ export function ajax(method, path, pathParams, request, axiosExtraConfig = {}, c
 }
 
 // 这个是处理含有正则路由的 // "/api/user/check/:id", {id: 980} -> "/api/user/check/980"
-export function getURL(pattern, params) {
+export function getURL(pattern: string, params: object) {
     if (!params) {
         return pattern;
     }

@@ -28,7 +28,7 @@ export class Module<ModuleState extends {}, RouteParam extends {} = {}, HistoryS
     }
 
     protected get rootState(): Readonly<RootState> {
-        return app.store.getState();
+        return app.store.getState() as Readonly<RootState>;
     }
 
     protected dispatch(action: () => Action<{}>) {

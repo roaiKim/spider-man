@@ -1,9 +1,8 @@
+const path = require("path");
+const os = require("os");
 
-const path = require("path")
-const os = require('os');
-
-function resolve(relativePath){
-    return path.resolve(__dirname, `../${relativePath}`)
+function resolve(relativePath) {
+    return path.resolve(__dirname, `../${relativePath}`);
 }
 
 function buildPath() {
@@ -11,10 +10,11 @@ function buildPath() {
     if (process.env.NODE_ENV === "development" || os.type() === "Windows_NT") {
         return resolve("build");
     }
-    return "/swtg/web/swtg-front"
+    return "/swtg/web/swtg-front";
 }
 
 module.exports = {
     src: resolve("src"),
-    build: buildPath()
-}
+    build: buildPath(),
+    tsConfig: resolve("tsconfig.json"),
+};

@@ -5,7 +5,7 @@ const http = {
     pro: "",
 };
 
-export function completePath(path, type = "dev") {
+export function completePath(path: string, type = "dev") {
     /* if (process.env.NODE_ENV !== "production") {
         return path;
     } */
