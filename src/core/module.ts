@@ -7,10 +7,12 @@ export interface LifecycleDecoratorFlag {
     isLifecycle?: boolean;
 }
 
-export type ActionHandler = (...args: any[]) => any;
-type ActionCreator<H> = H extends (...args: infer P) => any ? (...args: P) => Action<P> : never;
-type HandlerKeys<H> = { [K in keyof H]: H[K] extends (...args: any[]) => any ? K : never }[Exclude<keyof H, keyof ModuleLifecycleListener>];
+export type ActionHandler = (...args: unknown[]) => unknown;
+type ActionCreator<H> = H extends (...args: infer P) => unknown ? (...args: P) => Action<P> : never;
+type HandlerKeys<H> = { [K in keyof H]: H[K] extends (...args: unknown[]) => unknown ? K : never }[Exclude<keyof H, keyof ModuleLifecycleListener>];
 export type ActionCreators<H> = { readonly [K in HandlerKeys<H>]: ActionCreator<H[K]> };
+
+// type Actions = { [key: string]: Function };
 
 function getKeys<M extends Module<any>>(module: M) {
     const keys = [];
@@ -34,7 +36,7 @@ export function register<M extends Module<{}>>(module: M) {
         const method = module[actionType];
         const qualifiedActionType = `${moduleName}/${actionType}`;
         method.actionName = qualifiedActionType;
-        actions[actionType] = (...payload: any[]): Action<any[]> => ({ type: qualifiedActionType, payload });
+        actions[actionType] = (...payload: unknown[]): Action<unknown[]> => ({ type: qualifiedActionType, payload });
         app.actionHandlers[qualifiedActionType] = method.bind(module);
     });
     const lifecycleListener = module as ModuleLifecycleListener;
